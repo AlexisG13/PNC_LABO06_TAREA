@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+<title>Formulario contribuyente</title>
+</head>
+<body>
+	<form th:action="@{/ingresarContribuyente}" th:object="${contribuyente}" method="post">
+	 	<br>
+	 	<label>Seleccionar importancia</label>
+		<th>
+			<select th:field="*{importancia.c_importancia}">
+			<option th:each ="imp: ${importanciaCombo}" th:value="${imp.c_importancia}"
+					th:text ="${imp.s_importancia}">
+			</option>
+			</select>
+		</th>
+		<label for="s_nombre">Nombre:</label>
+		<input th:field = "*{s_nombre}" id="s_nombre" type="text" placeholder="Nombre del contribuyente" name="s_nombre" />
+		<span th:errors= "*{s_nombre}" style="color: #E81505"></span>
+
+	    <label for="s_apellido">Apellido:</label>
+		<input th:field="*{s_apellido}" id="s_apellido" type="text" placeholder="Apellido del contribuyente"  name="s_apellido" />
+		<span th:errors="*{s_apellido}" style="color: #E81505"></span>
+
+	    <label for="s_nit">NIT  </label>
+		<input th:field="*{s_nit}" id="s_nit" type="text" placeholder="NIT del contribuyente"  name="s_nit" />
+		<span th:errors="*{s_nit}" style="color: #E81505"></span>
+	    
+	  	<br>
+	    <input type="submit" value="Guardar" />
+	
+	</form>
+	<br>
+	<a href="/listado" class="btn btn-primary">Listado de contribuyentes</a>
+</body>
+</html>
